@@ -55,21 +55,12 @@ public class MainDao {
 		}
 		return matches;
 	}
-//	public List<Product> getItemsByName(String name) {
-//		List<Product> matches = new ArrayList<>();
-//		for(Product product : productsList) {
-//			if (product.getName().equalsIgnoreCase(name)) {
-//				matches.add(product);
-//			}
-//		}
-//		return matches;
-//	}
 	
-	// this id for the user
+	// this is for the user
 	public void createUser(Users users) {
 		String sql = "INSERT INTO users (firstname, lastname, email, phone, password) VALUES(? ,?, ?, ?, ?)"; // fills in the ? with the values from room object parameter
 		// the order of parameters for the ?'s should match the order of column names
-		jdbcTemplate.update(sql, users.getFirstname(), users.getLastName(), users.getEmail(), users.getPhone(), users.getPassword());
+		jdbcTemplate.update(sql, users.getFirstname(), users.getLastname(), users.getEmail(), users.getPhone(), users.getPassword());
 		
 	}
 }
