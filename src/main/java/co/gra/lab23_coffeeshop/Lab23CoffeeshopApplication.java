@@ -1,12 +1,12 @@
-package co.gra.lab21_coffeeshop;
+package co.gra.lab23_coffeeshop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Lab21CoffeeshopApplication {
+public class Lab23CoffeeshopApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Lab21CoffeeshopApplication.class, args);
+		SpringApplication.run(Lab23CoffeeshopApplication.class, args);
 	}
 }

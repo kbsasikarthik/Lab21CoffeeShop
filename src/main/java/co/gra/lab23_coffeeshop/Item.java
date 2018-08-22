@@ -1,15 +1,15 @@
-package co.gra.lab21_coffeeshop;
+package co.gra.lab23_coffeeshop;
 
-public class product {
-	private int id;
+public class Item  {
+	private Long id;
 	private String name;
 	private String category;
 	private String description;
-	private double price;
+	private Double price;
 	
-	public product() {}
+	public Item() {}
 	
-	public product(int id,String name, String category, String description, double price ) {
+	public Item(Long id,String name, String category, String description, Double price ) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -42,25 +42,26 @@ public class product {
 		this.description = description;
 	}
 
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	@Override
 	public String toString() {
 		return " [ID= " + id + ", Name= " + name + ", Category= " + category + "]"+", Price = " + price + "]";
 	}
 
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 	
 }

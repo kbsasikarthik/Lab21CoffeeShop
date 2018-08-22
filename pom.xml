@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>lab21_coffeeshop</name>
+	<name>lab23_coffeeshop</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -24,7 +24,14 @@
 		<java.version>1.8</java.version>
 	</properties>
 
+
+
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -49,6 +56,11 @@
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<scope>provided</scope>
+		</dependency>
+			<!-- Added for MySQL -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 	</dependencies>
 

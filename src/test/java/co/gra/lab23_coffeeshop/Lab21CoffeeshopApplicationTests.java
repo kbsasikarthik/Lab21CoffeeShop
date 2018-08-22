@@ -1,4 +1,4 @@
-package co.gra.lab21_coffeeshop;
+package co.gra.lab23_coffeeshop;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
