@@ -13,20 +13,21 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class CoffeeShopController {
 
+	// Dependency Injection
 	@Autowired
-	private ItemsDao itemsDao;
+	private MainDao mainDao;
 
 	@RequestMapping("/")
 	public ModelAndView showHomePage() {
 		// parameter inside the constructor represents the jsp file we create
-		List<Item> items = itemsDao.getAllItems();
+		List<Item> items = mainDao.getAllItems();
 		return new ModelAndView("list", "items", items);
 	}
 	
 	@RequestMapping("/items/{id}") // redirects to the rooms depending on the id number
 	public ModelAndView showProduct(@PathVariable("id") Long id){
 		ModelAndView mav = new ModelAndView("details");
-		mav.addObject("items", itemsDao.getItemByID(id));
+		mav.addObject("items", mainDao.getItemByID(id));
 		return mav;
 	}
 	
@@ -48,8 +49,9 @@ public class CoffeeShopController {
 		user.setPhone(phone);
 		if(password1.equals(password2)) {
 			user.setPassword(password1);
-			itemsDao.createUser(user);
-			mav = new ModelAndView("redirect:/");
+			mainDao.createUser(user);
+			mav = new ModelAndView("adduser");
+			mav.addObject(user);
 		} else {
 			mav = new ModelAndView("userregisterform" );
 		}
@@ -59,12 +61,13 @@ public class CoffeeShopController {
 	@RequestMapping("/itemsbyname")
 	public ModelAndView listItems(@RequestParam(value="name", required=false) String name) {
 		ModelAndView mav = new ModelAndView("list");
+		System.out.println(name);
 		if (name != null && !name.isEmpty()) {
 //			List<Item> itemsByName= itemsDao.getItemsByName(name);
-//			List<Item> items = itemsDao.getItemsByName(name);
-
+			List<Item> items = mainDao.getItemsByName(name);
+			System.out.println(items);
 //			mav= new ModelAndView("list", "items", items);
-			mav.addObject("items", itemsDao.getItemsByName(name));
+			mav.addObject("items", items);
 			mav.addObject("name", name);
 		} else {
 			mav =new ModelAndView("redirect:/");

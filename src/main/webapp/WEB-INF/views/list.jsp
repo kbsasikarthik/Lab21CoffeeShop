@@ -32,15 +32,16 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Item</th><th>Category</th><th>Price</th>
+				<th>ID</th><th>Item</th><th>Category</th><th>Price</th>
 			</tr>
 		</thead>
 	<tbody>
-		<c:forEach var="items" items="${items}">
+		<c:forEach var="item" items="${items}">
 			<tr>
-				<td ><a href="/items/${items.id}">${items.name}</a></td>
-				<td >${items.category}</td>
-				<td >${items.price}</td>
+				<td>${item.id}</td>
+				<td ><a href="/items/${item.id}">${item.name}</a></td>
+				<td >${item.category}</td>
+				<td >${item.price}</td>
 			</tr>
 		</c:forEach>
 	</tbody>

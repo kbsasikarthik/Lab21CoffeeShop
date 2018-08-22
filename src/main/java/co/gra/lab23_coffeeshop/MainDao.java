@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ItemsDao {
+public class MainDao {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -27,12 +27,12 @@ public class ItemsDao {
 		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Item.class), id);
 	}
 	
-	/**
-	 * Get list of foods in a given category.
-	 */
+
 	public List<Item> getItemsByName(String name) {
-		String sql = "SELECT * FROM items WHERE name LIKE '?[%]' ";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Item.class));
+		String sql = "SELECT * FROM items WHERE name LIKE (?) ";
+//		System.out.println();
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Item.class), "%"+name+"%");
+		
 	}
 	
 	/**
@@ -45,14 +45,7 @@ public class ItemsDao {
 		}
 		return categories;
 	}
-	
-	public void createUser(User user) {
-		String sql = "INSERT INTO users (firstname, lastname, email, phone, password) VALUES(? ,?, ?, ?, ?)"; // fills in the ? with the values from room object parameter
-		// the order of parameters for the ?'s should match the order of column names
-		jdbcTemplate.update(sql, user.getFirstname(), user.getLastName(), user.getEmail(), user.getPhone(), user.getPassword());
 		
-	}
-	
 	public List<Item> getItemByCategory(String category) {
 		List<Item> matches = new ArrayList<>();
 		for(Item item : itemsList) {
@@ -71,4 +64,12 @@ public class ItemsDao {
 //		}
 //		return matches;
 //	}
+	
+	// this id for the user
+	public void createUser(User user) {
+		String sql = "INSERT INTO users (firstname, lastname, email, phone, password) VALUES(? ,?, ?, ?, ?)"; // fills in the ? with the values from room object parameter
+		// the order of parameters for the ?'s should match the order of column names
+		jdbcTemplate.update(sql, user.getFirstname(), user.getLastName(), user.getEmail(), user.getPhone(), user.getPassword());
+		
+	}
 }
