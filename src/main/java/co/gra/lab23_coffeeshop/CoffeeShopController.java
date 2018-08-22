@@ -20,7 +20,7 @@ public class CoffeeShopController {
 	@RequestMapping("/")
 	public ModelAndView showHomePage() {
 		// parameter inside the constructor represents the jsp file we create
-		List<Item> items = mainDao.getAllItems();
+		List<Items> items = mainDao.getAllItems();
 		return new ModelAndView("list", "items", items);
 	}
 	
@@ -42,16 +42,16 @@ public class CoffeeShopController {
 								@RequestParam("email") String email, @RequestParam("phone") String phone, 
 								@RequestParam("password1") String password1, @RequestParam("password2") String password2) {
 		ModelAndView mav;
-		User user = new User();
-		user.setFirstName(firstname);
-		user.setLastName(lastname);
-		user.setEmail(email);
-		user.setPhone(phone);
+		Users users = new Users();
+		users.setFirstname(firstname);
+		users.setLastname(lastname);
+		users.setEmail(email);
+		users.setPhone(phone);
 		if(password1.equals(password2)) {
-			user.setPassword(password1);
-			mainDao.createUser(user);
+			users.setPassword(password1);
+			mainDao.createUser(users);
 			mav = new ModelAndView("adduser");
-			mav.addObject(user);
+			mav.addObject(users);
 		} else {
 			mav = new ModelAndView("userregisterform" );
 		}
@@ -63,10 +63,8 @@ public class CoffeeShopController {
 		ModelAndView mav = new ModelAndView("list");
 		System.out.println(name);
 		if (name != null && !name.isEmpty()) {
-//			List<Item> itemsByName= itemsDao.getItemsByName(name);
-			List<Item> items = mainDao.getItemsByName(name);
+			List<Items> items = mainDao.getItemsByName(name);
 			System.out.println(items);
-//			mav= new ModelAndView("list", "items", items);
 			mav.addObject("items", items);
 			mav.addObject("name", name);
 		} else {
@@ -74,4 +72,6 @@ public class CoffeeShopController {
 		}
 		return mav;
 	}
+	
+
 }

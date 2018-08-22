@@ -15,23 +15,23 @@ public class MainDao {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	private List<Item> itemsList = new ArrayList<>();
+	private List<Items> itemsList = new ArrayList<>();
 
-	public List<Item> getAllItems() {
+	public List<Items> getAllItems() {
 		String sql = "SELECT * FROM items";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Item.class));
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Items.class));
 	}
 	
-	public Item getItemByID(Long id) {
+	public Items getItemByID(Long id) {
 		String sql = "SELECT * FROM items WHERE id = ?"; 
-		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Item.class), id);
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Items.class), id);
 	}
 	
 
-	public List<Item> getItemsByName(String name) {
+	public List<Items> getItemsByName(String name) {
 		String sql = "SELECT * FROM items WHERE name LIKE (?) ";
 //		System.out.println();
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Item.class), "%"+name+"%");
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Items.class), "%"+name+"%");
 		
 	}
 	
@@ -40,17 +40,17 @@ public class MainDao {
 	 */
 	public Set<String> getItemCategories() {
 		Set<String> categories = new TreeSet<>();
-		for(Item Item : itemsList) {
-			categories.add(Item.getCategory());
+		for(Items Items : itemsList) {
+			categories.add(Items.getCategory());
 		}
 		return categories;
 	}
 		
-	public List<Item> getItemByCategory(String category) {
-		List<Item> matches = new ArrayList<>();
-		for(Item item : itemsList) {
-			if (item.getCategory().equalsIgnoreCase(category)) {
-				matches.add(item);
+	public List<Items> getItemByCategory(String category) {
+		List<Items> matches = new ArrayList<>();
+		for(Items items : itemsList) {
+			if (items.getCategory().equalsIgnoreCase(category)) {
+				matches.add(items);
 			}
 		}
 		return matches;
@@ -66,10 +66,10 @@ public class MainDao {
 //	}
 	
 	// this id for the user
-	public void createUser(User user) {
+	public void createUser(Users users) {
 		String sql = "INSERT INTO users (firstname, lastname, email, phone, password) VALUES(? ,?, ?, ?, ?)"; // fills in the ? with the values from room object parameter
 		// the order of parameters for the ?'s should match the order of column names
-		jdbcTemplate.update(sql, user.getFirstname(), user.getLastName(), user.getEmail(), user.getPhone(), user.getPassword());
+		jdbcTemplate.update(sql, users.getFirstname(), users.getLastName(), users.getEmail(), users.getPhone(), users.getPassword());
 		
 	}
 }

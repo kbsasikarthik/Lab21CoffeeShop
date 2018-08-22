@@ -17,33 +17,26 @@
 	<main class="container">
 	<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
 	<h1 class="navbar-brand"><strong>Welcome to SK Coffee shop</strong></h1>
-		<a id = "register" href = "/register-form" class="btn btn-primary">Register</a>
-		<a id = "admin" href = "/admin-form" class="btn btn-primary">Admin</a>
+		<a class="btn btn-info" href="/item">Back</a>
+		<a class="btn btn-warning" href="/">Logout</a>
 		
 		
 	</nav>
-	<h1>List of Products</h1>
-		<form class="form-inline" action="/itemsbyname" autocomplete="off">
-		<label class="sr-only" for="inlineFormInputName2">Name</label>
-		<input type="text" value="${name}"class="form-control mb-2 mr-sm-2" id="name" name="name" placeholder="name">
-		<button type="submit" class="btn btn-primary mb-2 mr-2">Search</button>
-		<c:if test="${not empty name}">
-		  	<a href="/" class="btn btn-secondary mb-2 mr-2">Clear</a>
-		</c:if>
-	</form>
+	<h1>List of Users</h1>
 	<table class="table">
 		<thead>
 			<tr>
-				<th>ID</th><th>Item</th><th>Category</th><th>Price</th>
+				<th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Phone Number</th>
 			</tr>
 		</thead>
 	<tbody>
-		<c:forEach var="item" items="${items}">
+		<c:forEach var="user" items="${users}">
 			<tr>
-				<td>${item.id}</td>
-				<td ><a href="/items/${item.id}">${item.name}</a></td>
-				<td >${item.category}</td>
-				<td >${item.price}</td>
+				<td>${user.id}</td>
+				<td >${user.firstname}</td>
+				<td >${user.lastname}</td>
+				<td >${user.email}</td>
+				<td >${user.phone}</td>
 			</tr>
 		</c:forEach>
 	</tbody>
